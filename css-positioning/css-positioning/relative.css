@@ -9,35 +9,34 @@
 
   /* your code here */
   position: relative;
-  top: 10px;
 }
 
 #bulbasaur {
   /* your code here */
-  position: relative;
+
   top: 100%;
 }
 
 #charmander {
   /* your code here */
-  position: relative;
+
   top: 26px;
 }
 
 #squirtle {
   /* your code here */
-  position: relative;
+
   top: 65px;
 }
 
 #pikachu {
   /* your code here */
-  position: relative;
+
   top: 137px;
 }
 
 #jigglypuff {
   /* your code here */
-  position: relative;
+
   top: 350px;
 }
