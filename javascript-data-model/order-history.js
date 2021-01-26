@@ -72,4 +72,4 @@ var orderHistory = [
 
 console.log('calling on order history items ', orderHistory[3].items[0].name);
 console.log('order 3, item 1', orderHistory[2].items[0].returnWindowClose);
-console.log('order 1, by ', orderHistory[0].items[0].by);
+console.log('What did we order in order#4 ', orderHistory[3].items[0].name, orderHistory[3].items[1].name);
