@@ -3,7 +3,7 @@ function countdown(number) {
   const count = [];
   while (number >= 0) {
     count.push(number);
-    number -= 1;
+    number--;
   }
   return count;
 }

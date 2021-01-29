@@ -5,10 +5,8 @@ function includesSeven(array) {
   for (i = 0; i < array.length; i++) {
     if (array[i] === 7) {
       filter = true;
-    } else {
-      filter = false;
+      break;
     }
-
   }
   return filter;
 }
