@@ -56,44 +56,48 @@ var pokedex = [
     imageUrl: 'images/blastoise.png'
   }
 ];
+var rowParent = document.querySelector('.row');
 
 function renderPokemon(pokemon) {
-  var rowParent = document.querySelector('.row');
+  var newDiv1 = document.createElement('div');
+  newDiv1.setAttribute('class', 'column-third');
 
-  for (var i = 0; i < pokemon.length; i++) {
-    var newDiv1 = document.createElement('div');
-    newDiv1.setAttribute('class', 'column-third');
+  var newDiv2 = document.createElement('div');
+  newDiv2.setAttribute('class', 'pokemon-card');
 
-    var newDiv2 = document.createElement('div');
-    newDiv2.setAttribute('class', 'pokemon-card');
+  var newImg = document.createElement('img');
+  newImg.setAttribute('src', pokemon.imageUrl);
 
-    var newImg = document.createElement('img');
-    newImg.setAttribute('src', pokemon[i].imageUrl);
+  var newDiv3 = document.createElement('div');
+  newDiv3.setAttribute('class', 'pokemon-card-text');
 
-    var newDiv3 = document.createElement('div');
-    newDiv3.setAttribute('class', 'pokemon-card-text');
+  var newH2 = document.createElement('h2');
+  newH2.textContent = pokemon.name;
 
-    var newH2 = document.createElement('h2');
-    newH2.textContent = pokemon[i].name;
+  var newH3 = document.createElement('h3');
+  newH3.textContent = pokemon.number;
 
-    var newH3 = document.createElement('h3');
-    newH3.textContent = pokemon[i].number;
+  var newP = document.createElement('p');
+  newP.textContent = pokemon.description;
 
-    var newP = document.createElement('p');
-    newP.textContent = pokemon[i].description;
+  newDiv3.appendChild(newH2);
+  newDiv3.appendChild(newH3);
+  newDiv3.appendChild(newP);
 
-    newDiv3.appendChild(newH2);
-    newDiv3.appendChild(newH3);
-    newDiv3.appendChild(newP);
+  newDiv2.appendChild(newImg);
+  newDiv2.appendChild(newDiv3);
 
-    newDiv2.appendChild(newImg);
-    newDiv2.appendChild(newDiv3);
+  newDiv1.appendChild(newDiv2);
 
-    newDiv1.appendChild(newDiv2);
-
-    rowParent.appendChild(newDiv1);
-  }
-
+  rowParent.appendChild(newDiv1);
 }
 
-renderPokemon(pokedex);
+renderPokemon(pokedex[0]);
+renderPokemon(pokedex[1]);
+renderPokemon(pokedex[2]);
+renderPokemon(pokedex[3]);
+renderPokemon(pokedex[4]);
+renderPokemon(pokedex[5]);
+renderPokemon(pokedex[6]);
+renderPokemon(pokedex[7]);
+renderPokemon(pokedex[8]);
