@@ -89,15 +89,10 @@ function renderPokemon(pokemon) {
 
   newDiv1.appendChild(newDiv2);
 
-  rowParent.appendChild(newDiv1);
+  return newDiv1;
 }
 
-renderPokemon(pokedex[0]);
-renderPokemon(pokedex[1]);
-renderPokemon(pokedex[2]);
-renderPokemon(pokedex[3]);
-renderPokemon(pokedex[4]);
-renderPokemon(pokedex[5]);
-renderPokemon(pokedex[6]);
-renderPokemon(pokedex[7]);
-renderPokemon(pokedex[8]);
+for (var i = 0; i < pokedex.length; i++) {
+  var pokemon = renderPokemon(pokedex[i]);
+  rowParent.appendChild(pokemon);
+}
