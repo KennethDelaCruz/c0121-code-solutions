@@ -10,7 +10,7 @@ function submitEvent() {
     message: message1
   };
   console.log('form information', formInfo);
-  document.querySelector('form').reset();
+  contactForm.reset();
 }
 
 var contactForm = document.querySelector('form');
