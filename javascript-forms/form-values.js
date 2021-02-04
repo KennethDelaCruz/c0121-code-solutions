@@ -1,14 +1,16 @@
-var formRoute = document.querySelector('form');
 
 function submitEvent() {
   event.preventDefault();
+  var name1 = contactForm.elements.name.value;
+  var email1 = contactForm.elements.email.value;
+  var message1 = contactForm.elements.message.value;
   var formInfo = {
-    name: formRoute.name.value,
-    email: formRoute.email.value,
-    message: formRoute.message.value
+    name: name1,
+    email: email1,
+    message: message1
   };
   console.log('form information', formInfo);
-  formRoute.reset();
+  document.querySelector('form').reset();
 }
 
 var contactForm = document.querySelector('form');

@@ -15,7 +15,7 @@ var userName = document.querySelector('#user-name');
 var userEmail = document.querySelector('#user-email');
 var userMessage = document.querySelector('#user-message');
 
-console.log();
+console.log(userName, userEmail, userMessage);
 
 userName.addEventListener('focus', handleFocus);
 userName.addEventListener('input', handleInput);
