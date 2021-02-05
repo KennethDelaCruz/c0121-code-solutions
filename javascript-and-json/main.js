@@ -22,7 +22,7 @@ var arrayString = JSON.stringify(bookArray);
 
 console.log('What is the typeof after JSON:', typeof arrayString);
 
-var manualString = JSON.stringify({ numberID: 45, name: 'Kenneth' });
+var manualString = '{"numberID": 45, "name" : "Kenneth"}';
 
 console.log('What is the type of for manualString:', typeof manualString);
 
