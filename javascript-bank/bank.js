@@ -38,9 +38,7 @@ Bank.prototype.getAccount = function (number) {
 Bank.prototype.getTotalAssets = function () {
   var accountList = this.accounts;
   var totalAssets = 0;
-  if (accountList.length === 0) {
-    return 0;
-  }
+
   for (var i = 0; i < accountList.length; i++) {
     totalAssets += accountList[i].getBalance();
   }

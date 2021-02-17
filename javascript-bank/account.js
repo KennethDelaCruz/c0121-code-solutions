@@ -31,9 +31,6 @@ Account.prototype.withdraw = function (amount) {
 Account.prototype.getBalance = function () {
   var transactionsList = this.transactions;
   var balance = 0;
-  if (transactionsList.length === 0) {
-    return 0;
-  }
 
   for (var i = 0; i < transactionsList.length; i++) {
     if (transactionsList[i].type === 'deposit') {
