@@ -29,7 +29,6 @@ Bank.prototype.getAccount = function (number) {
       continue;
     }
   }
-
   if (chosenAccount === 0) {
     return null;
   }
@@ -39,12 +38,11 @@ Bank.prototype.getAccount = function (number) {
 Bank.prototype.getTotalAssets = function () {
   var accountList = this.accounts;
   var totalAssets = 0;
-  if (accountList === 0) {
+  if (accountList.length === 0) {
     return 0;
   }
   for (var i = 0; i < accountList.length; i++) {
     totalAssets += accountList[i].getBalance();
   }
-
   return totalAssets;
 };
