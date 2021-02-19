@@ -28,10 +28,10 @@ function imgClick(event) {
     counter--;
   }
 
-  if (counter > 4) {
+  if (counter > images.length - 1) {
     counter = 0;
   } else if (counter < 0) {
-    counter = 4;
+    counter = images.length - 1;
   }
 
   for (var i = 0; i < dots.length; i++) {
