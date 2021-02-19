@@ -1,8 +1,3 @@
-body {
-  margin: 100px;
-  max-width: 500px;
-  max-height: 500px;
-}
 
 label {
   margin: 10px;
@@ -11,7 +6,6 @@ label {
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  src: url('BrandonGrotesque-Medium.woff2') format('woff2');
   font-stretch: condensed;
 }
 
@@ -27,7 +21,6 @@ select {
   font-family: 'Brandon Grotesque', sans-serif;
   font-style: normal;
   font-weight: normal;
-  src: url('BrandonGrotesque-Regular.woff2') format('woff2');
 }
 
 select {
@@ -39,19 +32,28 @@ h2 {
   font-family: 'Brandon Grotesque', sans-serif;
   font-style: normal;
   font-weight: 500;
-  src: url('BrandonGrotesque-Medium.woff2') format('woff2');
   color: orangered;
 }
 
 button {
-  margin-left: 400px;
   padding: 8px 25px;
   border-radius: 25px;
   font-family: 'Brandon Grotesque', sans-serif;
   font-style: normal;
   font-weight: 500;
-  src: url('BrandonGrotesque-Medium.woff2') format('woff2');
   color: white;
   background-color: orangered;
   border: 0;
+  float: right;
+}
+
+.container {
+  display: flex;
+  width: 500px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
