@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;800&display=swap');
 
 body {
   display: flex;
@@ -9,8 +8,7 @@ body {
 .title-text,
 .feature,
 .description {
-  font-family: 'Barlow', sans-serif;
-  font-stretch: extra-condensed;
+  font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
 .container {
@@ -48,7 +46,7 @@ body {
   width: 100%;
   text-align: center;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 800;
 }
 
 .description {
