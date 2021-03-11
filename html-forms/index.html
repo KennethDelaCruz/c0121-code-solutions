@@ -6,36 +6,29 @@
 
   <body>
     <form>
-      <label for="email">Email</label>
-          <br />
-            <input id="email" type="text" name="Email" size="15"
-             max length="30"/>
-             <br />
-          <label for="Why is coding cool">Why is Coding Cool?</label>
-              <br />
-            <select id="Why is coding cool" name="Why is coding cool">
-              <option value="Select an Option">Select a Value</option>
-              <option value="Because it's interesting">Because it's Interesting</option>
-              <option value="Because it's fun">Because it's fun</option>
-              <option value="Because it's powerful">Because it's powerful</option>
-            </select>
-            <br />
-          <label for="favorite language">Favorite Language (choose one)</label> <br />
-          <input id="HTML" type="radio" name="favorite language" value="HTML" />
-          <label for="HTML">HTML</label>
-          <input id="CSS" type="radio" name="favorite language" value="CSS" />
-          <label for="CSS">CSS</label>
-          <input id="JAVASCRIPT" type="radio" name="favorite language" value="JAVASCRIP" />
-          <label for="JAVASCRIPT">JAVASCRIPT</label>
-          <br />
-          <label for="email signup">Would you like to Sign up for more information?</label>
-          <br />
+      <label for="email">Email</label><br />
+      <input type="text" id="email" size="15" max length="30"/><br />
+      <label for="coding-cool">Why is Coding Cool?</label><br />
+      <select id="coding-cool">
+        <option value="Select an Option">Select a Value</option>
+        <option value="Because it's interesting">Because it's Interesting</option>
+        <option value="Because it's fun">Because it's fun</option>
+        <option value="Because it's powerful">Because it's powerful</option>
+      </select><br />
+      <label for="favorite language">Favorite Language (choose one)</label> <br />
+      <input type="radio" name="favorite-language" id="html-radio" value="HTML">
+      <label for="html-radio">HTML</label>
+      <input type="radio" name="favorite-language" id="css-radio" value="CSS">
+      <label for="css-radio">CSS</label>
+      <input type="radio" name="favorite-language" id="js-radio" value="JAVASCRIPT">
+      <label for="js-radio">JavaScript</label><br />
+      <label for="email-signup">Would you like to Sign up for more information?</label><br />
+      <input type="checkbox" id="email-signup" value="email" />
+      <label for="email-signup">Sign me up!</label><br />
+      <label for="comments">Comments?</label><br />
+      <textarea id="comments" cols="20" rows="4"></textarea><br />
+      <button type="submit">Submit</button>
 
-          <label for="sign up">Sign Me Up!</label>
-          <br />
-          <label for="comments">Comments?</label>
-          <br />
-          <textarea id="comments" name="comments" cols="20" rows="4"></textarea>
     </form>
   </body>
 </html>
