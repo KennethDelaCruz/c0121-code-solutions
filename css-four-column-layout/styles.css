@@ -1,0 +1,59 @@
+
+body {
+  display: flex;
+  justify-content: center;
+  height: auto;
+}
+
+.title-text,
+.feature,
+.description {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.container {
+  width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.phones {
+  width: 100%;
+  display: flex;
+}
+
+.column-fourth {
+  width: calc(99% / 4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  width: 100%;
+  height: auto;
+}
+
+.icon {
+  width: 20%;
+  height: auto;
+  padding-top: 10px;
+}
+
+.feature {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.description {
+  text-align: center;
+  font-size: 12px;
+}
+
+.title-text {
+  font-size: 20px;
+}
