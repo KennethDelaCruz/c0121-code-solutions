@@ -8,7 +8,10 @@ if (feature === 'read') {
     return console.log(`${index}: ${data.notes[index]}`);
   }
   read(data.notes);
-} if (feature === 'create') {
+} else if (feature === 'create') {
   const create = require('./create.js');
   create(process.argv[3]);
+} else if (feature === 'delete') {
+  const remove1 = require('./delete.js');
+  remove1(process.argv[3]);
 }
