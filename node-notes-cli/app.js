@@ -14,4 +14,9 @@ if (feature === 'read') {
 } else if (feature === 'delete') {
   const remove1 = require('./delete.js');
   remove1(process.argv[3]);
+} else if (feature === 'update' || feature === 'edit') {
+  const update = require('./update.js');
+  update(process.argv[3]);
+} else {
+  console.log('Feature/argument is not found, please redo request');
 }
