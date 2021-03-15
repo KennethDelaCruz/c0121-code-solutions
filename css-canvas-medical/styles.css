@@ -1,0 +1,240 @@
+.container {
+  width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
+}
+
+header {
+  width: 100%;
+  height: 75px;
+  border-bottom: 2px solid rgb(235, 235, 235);
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-half {
+  width: calc(100% / 2);
+}
+
+.column-third {
+  width: calc(100% / 3);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 700px;
+  font-family: 'Avenir', sans-serif;
+  color: rgb(189, 189, 189);
+  align-items: center;
+}
+
+.header-buttons > h4 {
+  margin: 0 20px;
+  font-size: 14px;
+}
+
+button {
+  font-family: "Avenir", sans-serif;
+  background-color: rgb(26, 52, 136);
+  color: white;
+  font-size: 18px;
+  height: 40px;
+  width: 120px;
+  border-radius: 5px;
+}
+
+.image-button {
+  width: 180px;
+  height: 50px;
+}
+
+.header-image {
+  width: 15%;
+}
+
+.hero-container {
+  width: 100%;
+  height: 500px;
+  background: url("images/hero.jpg") no-repeat center;
+  background-size: 100%;
+  position: relative;
+  margin-top: 50px;
+}
+
+.hero-overlay {
+  background-size: 95%;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hero-text {
+  position: relative;
+  left: 50px;
+  color: white;
+  width: 455px;
+}
+
+.hero-text > h2,
+.clinic-header > h3 {
+  font-family: "Tiempos Headline", sans-serif;
+  font-weight: 300;
+  font-size: 36px;
+  margin: 0;
+}
+
+.hero-text > p,
+.clinic-header > p,
+.clinic-locations > h4,
+.column-third > p {
+  font-family: 'Avenir', sans-serif;
+}
+
+.hero-text > p {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.clinic-header > p,
+.column-third > p {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+}
+
+.clinic-header,
+.clinic-locations,
+.clinic-header > p {
+  text-align: center;
+  color: rgb(87, 87, 87);
+}
+
+.clinic-header > h3 {
+  font-size: 24px;
+}
+
+.clinic-locations {
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+}
+
+.clinic-container,
+.learn-more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.clinic-container {
+  justify-content: center;
+  background-color: rgb(245, 245, 245);
+  margin-top: 50px;
+  height: 400px;
+  width: 100%;
+  border-bottom: 2px solid rgb(235, 235, 235);
+}
+
+.learn-more {
+  justify-content: space-around;
+  height: 125px;
+}
+
+.column-third > h3,
+.column-third > p {
+  margin: 5px 0;
+}
+
+.get-started-button {
+  width: 180px;
+  height: 50px;
+}
+
+.column-third > h3 {
+  font-family: "Tiempos headline", sans-serif;
+  font-size: 20px;
+}
+
+.column-third > p,
+.column-third > h3,
+.footer-clicks > p {
+  color: rgb(87, 87, 87);
+}
+
+.button-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.company-container,
+.company-directory {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.company-container {
+  align-items: center;
+  background-color: rgb(78, 78, 78);
+  height: 400px;
+  color: rgb(214, 214, 214);
+  font-family: "avenir", sans-serif;
+  font-weight: bold;
+}
+
+.white-company-logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.company-location {
+  position: static;
+}
+
+.location-container {
+  position: relative;
+  left: 50px;
+}
+
+.location-container > p {
+  line-height: 10px;
+  font-size: 12px;
+}
+
+.footer-column {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  position: static;
+  font-family: "avenir", sans-serif;
+  font-weight: bold;
+}
+
+.footer-clicks {
+  position: relative;
+  left: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.footer-clicks > p {
+  margin-right: 20px;
+  font-size: 14px;
+}
