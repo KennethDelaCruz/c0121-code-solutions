@@ -26,5 +26,6 @@ app.post('/api/grades', (req, res) => {
     newObject[prop] = reqObject[prop];
   }
   nextId++;
-  res.json(newObject);
+  res.status(201).json(newObject);
+
 });
