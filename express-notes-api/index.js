@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
-const data = require('./data.json');
 const fs = require('fs');
-const { Console } = require('console');
 
 app.get('/api/notes', (req, res) => {
   const data = require('./data.json');
@@ -35,10 +33,26 @@ app.post('/api/notes', (req, res) => {
   data.notes[data.nextId] = newObject;
   data.nextId++;
   fs.writeFile('data.json', JSON.stringify(data, null, 2), 'utf8', err => {
-    if (err) throw err;
+    if (err) {
+      res.status(500).send('error: there is no such file or directory');
+    }
     res.status(201).send('File has been saved!');
   });
+});
 
+app.delete('/api/notes/:id', (req, res) => {
+  const id = req.params.id;
+  const data = require('./data.json');
+  if (!data.notes[id]) {
+    res.status(404).send('error: notes id does note exist');
+  }
+  delete data.notes[id];
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), 'utf8', err => {
+    if (err) {
+      res.status(500).send('error: unexpected error has occured');
+    }
+    res.status(204).send('request note id has been deleted');
+  });
 });
 
 app.listen(3000, () => {
