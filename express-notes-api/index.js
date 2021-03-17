@@ -9,8 +9,7 @@ app.get('/api/notes', (req, res) => {
 app.get('/api/notes/:id', (req, res) => {
   const data = require('./data.json');
   const id = req.params.id;
-  console.log(typeof id, id);
-  if (!id || id < 0) {
+  if (!parseInt(id) || id < 0) {
     res.status(400).send('ID must be a positive integer');
   } else if (!data.notes[id]) {
     res.status(404).send('ID cannot be found');
