@@ -4,8 +4,11 @@ const fs = require('fs');
 const data = require('./data.json');
 
 app.get('/api/notes', (req, res) => {
-  const data = require('./data.json');
-  res.status(200).json(data.notes);
+  const dataArray = [];
+  for (const prop in data.notes) {
+    dataArray.push(data.notes[prop]);
+  }
+  res.status(200).json(dataArray);
 });
 
 app.get('/api/notes/:id', (req, res) => {
