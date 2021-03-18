@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
+const data = require('./data.json');
 
 app.get('/api/notes', (req, res) => {
   const data = require('./data.json');
@@ -21,10 +22,9 @@ app.get('/api/notes/:id', (req, res) => {
 app.use(express.json());
 
 app.post('/api/notes', (req, res) => {
-  if (Object.keys(req.body).length === 0) {
+  if (!req.body.content) {
     res.status(400).send({ error: 'request does not exist' });
   }
-  const data = require('./data.json');
   const newObject = {};
   newObject.id = data.nextId;
   for (const prop in req.body) {
@@ -35,14 +35,14 @@ app.post('/api/notes', (req, res) => {
   fs.writeFile('data.json', JSON.stringify(data, null, 2), 'utf8', err => {
     if (err) {
       res.status(500).send({ error: 'there is no such file or directory' });
+    } else {
+      res.status(201).json(newObject);
     }
-    res.status(201).json(newObject);
   });
 });
 
 app.delete('/api/notes/:id', (req, res) => {
   const id = req.params.id;
-  const data = require('./data.json');
   if (!data.notes[id]) {
     res.status(404).send({ error: 'notes id does note exist' });
   }
@@ -60,7 +60,6 @@ app.listen(3000, () => {
 
 app.put('/api/notes/:id', (req, res) => {
   const id = req.params.id;
-  const data = require('./data.json');
   let content = '';
   for (const prop in req.body) {
     content = prop;
@@ -74,8 +73,9 @@ app.put('/api/notes/:id', (req, res) => {
   fs.writeFile('data.json', JSON.stringify(data, null, 2), 'utf8', err => {
     if (err) {
       res.status(500).send({ error: 'unexpected error has occured' });
+    } else {
+      res.status(200).json(data.notes);
     }
-    res.status(200).json(data.notes);
   });
 
 });
