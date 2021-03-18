@@ -15,15 +15,16 @@ app.get('/api/notes/:id', (req, res) => {
     res.status(400).send({ error: 'ID must be a positive integer' });
   } else if (!data.notes[id]) {
     res.status(404).send(`cannot find id ${id}`);
+  } else {
+    res.status(200).json(data.notes[id]);
   }
-  res.status(200).json(data.notes[id]);
 });
 
 app.use(express.json());
 
 app.post('/api/notes', (req, res) => {
   if (!req.body.content) {
-    res.status(400).send({ error: 'request does not exist' });
+    return res.status(400).send({ error: 'request does not exist' });
   }
   const newObject = {};
   newObject.id = data.nextId;
@@ -44,14 +45,15 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
   const id = req.params.id;
   if (!data.notes[id]) {
-    res.status(404).send({ error: 'notes id does note exist' });
+    return res.status(404).send({ error: 'notes id does note exist' });
   }
   delete data.notes[id];
   fs.writeFile('data.json', JSON.stringify(data, null, 2), 'utf8', err => {
     if (err) {
       res.status(500).send({ error: 'unexpected error has occured' });
+    } else {
+      res.status(204).send('');
     }
-    res.status(204).send('');
   });
 });
 
@@ -65,9 +67,9 @@ app.put('/api/notes/:id', (req, res) => {
     content = prop;
   }
   if (Object.keys(req.body).length === 0 || !data.notes[id]) {
-    res.status(400).send({ error: 'notes/id doesnt exist OR there is no content to send' });
+    return res.status(400).send({ error: 'notes/id doesnt exist OR there is no content to send' });
   } else if (!data.notes[id][content]) {
-    res.status(400).send({ error: 'notes/id content does not exist' });
+    return res.status(400).send({ error: 'notes/id content does not exist' });
   }
   data.notes[id][content] = req.body[content];
   fs.writeFile('data.json', JSON.stringify(data, null, 2), 'utf8', err => {
