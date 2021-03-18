@@ -1,20 +1,21 @@
 /* exported capitalizeWords */
-function capitalizeWord(word) {
-  var lower = word.toLowerCase();
-  var newWord = []
-  var splitWord = word.split('');
-  if (lower === 'javascript'){
-    return 'JavaScript';
+function capitalizeWords(string) {
+  const stringArray = string.split(' ');
+  const newString = [];
+  for (let i = 0; i < stringArray.length; i++) {
+    const newWord = stringArray[i].split('');
+    const pushWord = [];
+    for (let j = 0; j < newWord.length; j++) {
+      if (j === 0) {
+        const capital = newWord[j].toUpperCase();
+        pushWord.push(capital);
+      } else {
+        const lower = newWord[j].toLowerCase();
+        pushWord.push(lower);
+      }
+    }
+    newString.push(pushWord.join(''));
   }
 
-  for (var i = 0; i < splitWord.length; i++){
-    if (i === 0){
-      var capital = splitWord[i].toUpperCase();
-      newWord.push(capital);
-    } else {
-      var lowerLetter = splitWord[i].toLowerCase();
-      newWord.push(lowerLetter)
-    }
-  }
-  return newWord.join('')
+  return newString.join(' ');
 }
