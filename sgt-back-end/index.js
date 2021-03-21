@@ -76,11 +76,22 @@ app.post('/api/grades', (req, res, next) => {
   returning *;
   `;
 
-  //Everthing up until this point has been completed.
-  //All i need to check is the dbquery
   const params = [req.body.name, req.body.course, req.body.score];
   db.query(sql, params)
     .then(result => {
-      if(!result)
+      const newRow = result.rows[0];
+      if (!params) {
+        res.status(404).json({
+          error: 'an Unexpected error has occured'
+        });
+      } else {
+        res.json(newRow);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'An Unexpected error occurred.'
+      });
     });
 });
