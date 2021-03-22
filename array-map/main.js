@@ -19,8 +19,5 @@ console.log(prices);
 const upperCase = languages.map(language => language.toUpperCase());
 console.log(upperCase);
 
-const firstLetters = languages.map(language => {
-  const $word = language.charAt(0).toUpperCase() + language.slice(1);
-  return $word;
-});
+const firstLetters = languages.map(language => language[0]);
 console.log(firstLetters);
