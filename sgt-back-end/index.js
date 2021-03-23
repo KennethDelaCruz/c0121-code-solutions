@@ -20,13 +20,13 @@ app.get('/api/grades', (req, res, next) => {
   `;
   db.query(sql)
     .then(result => {
-      if (!result) {
-        res.status(500).json({
-          error: 'Cannot find list of grades'
-        });
-      } else {
-        res.status(200).json(result.rows);
-      }
+      res.status(200).json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'unexpected error occured'
+      });
     });
 });
 
@@ -84,14 +84,9 @@ app.post('/api/grades', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const newRow = result.rows[0];
-      if (!params) {
-        res.status(404).json({
-          error: 'an Unexpected error has occured'
-        });
-      } else {
-        res.json(newRow);
-      }
-    })
+      res.status(201).json(newRow);
+    }
+    )
     .catch(err => {
       console.error(err);
       res.status(500).json({
@@ -101,9 +96,9 @@ app.post('/api/grades', (req, res, next) => {
 });
 
 app.put('/api/grades/:gradeId', (req, res, next) => {
-  if (!req.params.gradeId || req.params.gradeId <= 0) {
+  if (req.params.gradeId <= 0) {
     return res.status(404).json({
-      error: 'Invalid gradeID OR gradeId does not exist'
+      error: 'Invalid gradeId, gradeId must be a non-negative number'
     });
   } else if (req.body.score <= 0) {
     return res.status(404).json({
@@ -111,22 +106,24 @@ app.put('/api/grades/:gradeId', (req, res, next) => {
     });
   } else if (!req.body.course) {
     return res.status(400).json({
-      error: 'score is missing/does not exist'
+      error: 'score does not exist'
     });
   }
   const sql = `
   update "grades"
-      set "score" = $1
-    where "gradeId" = $2 AND "name" = $3 AND "course" = $4
+      set "name" = $1,
+          "course" = $2,
+          "score" = $3
+    where "gradeId" = $4
     returning *;
     `;
-  const params = [req.body.score, req.params.gradeId, req.body.name, req.body.course];
+  const params = [req.body.name, req.body.course, req.body.score, req.params.gradeId];
   db.query(sql, params)
     .then(result => {
       const updateRow = result.rows[0];
       if (!updateRow) {
         return res.status(404).json({
-          error: 'update failed, gradeId and name may not match/exist'
+          error: 'update failed, gradeId does not exist'
         });
       } else {
         return res.status(200).json(updateRow);
@@ -146,21 +143,15 @@ app.delete('/api/grades/:gradeId', (req, res, next) => {
     return res.status(400).json({
       error: 'invalid gradeId'
     });
-  } else if (!req.body.name || !req.body.course) {
-    return res.status(400).json({
-      error: 'name and/or course must be provided'
-    });
   }
   const sql = `
   delete from "grades"
-  where "gradeId" = $1 AND "name" = $2 AND "course" = $3;
+  where "gradeId" = $1;
   `;
-  const params = [req.params.gradeId, req.body.name, req.body.course];
+  const params = [req.params.gradeId];
   db.query(sql, params)
     .then(result => {
-      return res.status(204).json({
-        success: 'requested gradeId deleted'
-      });
+      return res.sendStatus(204);
     })
     .catch(err => {
       console.error(err);
