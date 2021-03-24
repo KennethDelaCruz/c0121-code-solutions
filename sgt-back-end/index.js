@@ -147,6 +147,7 @@ app.delete('/api/grades/:gradeId', (req, res, next) => {
   const sql = `
   delete from "grades"
   where "gradeId" = $1;
+  returning *
   `;
   const params = [req.params.gradeId];
   db.query(sql, params)
