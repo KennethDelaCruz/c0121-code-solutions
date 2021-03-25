@@ -1,0 +1,29 @@
+.one {
+  background-color: rgb(41, 19, 102);
+  color: white;
+}
+
+.two {
+  background-color: rgb(77, 47, 158);
+  color: white;
+}
+
+.three {
+  background-color: rgb(223, 109, 109);
+  color: white;
+}
+
+.four {
+  background-color: orange;
+  color: white;
+}
+
+.five {
+  background-color: yellow;
+  color: white;
+}
+
+.six {
+  background-color: white;
+  color: black;
+}
