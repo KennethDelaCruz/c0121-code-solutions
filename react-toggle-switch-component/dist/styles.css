@@ -1,0 +1,43 @@
+#root {
+  width: 500px;
+  height: 500px;
+}
+
+.switchOff {
+  width: 50px;
+  position: static;
+  height: 20px;
+  border: 1px solid lightgray;
+  background-color: lightgrey;
+}
+
+.switchOn {
+  width: 50px;
+  position: static;
+  height: 20px;
+  border: 2px solid lightgray;
+  background-color: green;
+}
+
+.sliderOff {
+  position: relative;
+  height: 18px;
+  width: 24px;
+  top: 1px;
+  left: 2px;
+  background-color: white;
+}
+
+.sliderOn {
+  position: relative;
+  height: 18px;
+  width: 24px;
+  top: 1px;
+  left: 28px;
+  background-color: white;
+}
+
+.switchOff:hover,
+.switchOn:hover {
+  cursor: pointer;
+}
