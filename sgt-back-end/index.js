@@ -152,7 +152,7 @@ app.delete('/api/grades/:gradeId', (req, res, next) => {
   const params = [req.params.gradeId];
   db.query(sql, params)
     .then(result => {
-      return res.sendStatus(204);
+      return res.sendStatus(404);
     })
     .catch(err => {
       console.error(err);
