@@ -64,12 +64,7 @@ app.get('/api/grades/:gradeId', (req, res, next) => {
 });
 
 app.post('/api/grades', (req, res, next) => {
-  const gradeId = parseInt(req.params.gradeId, 10);
-  if (!Number.isInteger(gradeId) || gradeId <= 0) {
-    return res.status(400).json({
-      error: 'invalid gradeId'
-    });
-  } else if (!req.body.name || !req.body.course || !req.body.score) {
+  if (!req.body.name || !req.body.course || !req.body.score) {
     return res.status(400).json({
       error: 'Invalid Data Values OR not all data requirements met'
     });
@@ -146,13 +141,17 @@ app.delete('/api/grades/:gradeId', (req, res, next) => {
   }
   const sql = `
   delete from "grades"
-  where "gradeId" = $1;
-  returning *
+  where "gradeId" = $1
+  returning *;
   `;
   const params = [req.params.gradeId];
   db.query(sql, params)
     .then(result => {
-      return res.sendStatus(404);
+      if (!result.rows[0]) {
+        return res.sendStatus(404);
+      } else {
+        return res.sendStatus(204);
+      }
     })
     .catch(err => {
       console.error(err);
