@@ -1,3 +1,16 @@
 .hidden {
   display: none !important;
 }
+
+div {
+  width: 300px;
+  border: 1px solid black;
+}
+
+.item {
+  background-color: tan;
+}
+
+.description {
+  background-color: rgb(255, 233, 205);
+}
