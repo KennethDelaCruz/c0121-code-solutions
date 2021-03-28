@@ -1,0 +1,21 @@
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 300px;
+  border: 2px solid black;
+}
+
+.image-section {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 450px;
+  height: 100%;
+  flex-direction: column;
+}
+
+.pokemon {
+  width: 55%;
+}
