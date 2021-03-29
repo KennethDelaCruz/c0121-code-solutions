@@ -8,7 +8,11 @@ export default class Carousel extends React.Component {
     this.handleLeft = this.handleLeft.bind(this);
     this.handleDots = this.handleDots.bind(this);
     this.length = this.props.gallery.length;
-    this.timer = setInterval(() => {
+
+  }
+
+  componentDidMount() {
+    setInterval(() => {
       if (this.state.selected === (this.length - 1)) {
         this.setState({ selected: 0 });
       } else {
