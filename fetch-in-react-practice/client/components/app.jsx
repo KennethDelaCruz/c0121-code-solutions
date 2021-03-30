@@ -51,11 +51,11 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(newTodo)
     })
-      .then(response => {
-        response.json();
-      })
+      .then(response => response.json())
       .then(todos => {
-        this.getAllTodos();
+        const newArray = this.state.todos.slice();
+        newArray.push(todos);
+        this.setState({ todos: newArray });
       });
   }
 
@@ -74,28 +74,31 @@ export default class App extends React.Component {
      * TIP: Be sure to SERIALIZE the updates in the body with JSON.stringify()
      * And specify the "Content-Type" header as "application/json"
      */
-    // const array = this.state.todos;
-    // // function indexFinder() {
-    // //   for (let i = 0; i < array.length; i++) {
-    // //     if (todoId === array[i].todoId) {
-    // //       return i;
-    // //     } else {
-    // //       continue;
-    // //     }
-    // //   }
-    // // }
-    // var index = indexFinder();
-    const $update = this.state.todos[todoId - 1].isCompleted ? { isCompleted: false } : { isCompleted: true };
+    const array = this.state.todos;
+    function indexFinder() {
+      for (let i = 0; i < array.length; i++) {
+        if (todoId === array[i].todoId) {
+          return i;
+        }
+      }
+    }
+    var index = indexFinder();
+    const isCompleted = this.state.todos[index].isCompleted;
+    const toggled = {
+      isCompleted: !isCompleted
+    };
     fetch(`api/todos/${todoId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify($update)
+      body: JSON.stringify(toggled)
     })
       .then(response => response.json())
       .then(result => {
-        this.getAllTodos();
+        const newTodos = this.state.todos.slice();
+        newTodos[index] = result;
+        this.setState({ todos: newTodos });
       })
       .catch(err => {
         console.error(err);
