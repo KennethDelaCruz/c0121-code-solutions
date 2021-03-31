@@ -112,7 +112,12 @@ app.get('/api/flashcards', (req, res, next) => {
     .then(result => {
       res.json(result.rows);
     })
-    .catch(err => next(err));
+    .catch(err => {
+      next(err);
+    })
+    .catch(err => {
+      console.error(err);
+    });
 });
 
 app.use(errorMiddleware);
