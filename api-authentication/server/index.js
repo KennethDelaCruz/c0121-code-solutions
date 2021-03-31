@@ -89,9 +89,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
             throw new ClientError(401, 'invalid login');
           }
         })
-        .catch(err => {
-          res.status(401).json(err);
-        });
+        .catch(err => next(err));
     });
 });
 
