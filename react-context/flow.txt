@@ -1,0 +1,57 @@
+1) USER CAN SIGN UP:
+  A) Users will click the `SIGN-UP` button which will change the this.state.route of the App class using window.location.hash
+        1)This will determine the wording and behavior of future components
+  B) When the user SUBMITS with USERNAME and PASSWORDS. it will pass those values to a fetch function
+      1) argument1 was determined by this.state.route by fetch(`api/auth/${this.state.route}) in this case
+        it would be fetch(`api/auth/sign-up`. {})
+      2) argument 2: with the methods:post content-type: application/json with USERNAME and PASSWORD as req.body
+  C)App.post will pick up this request and first run Argon2 to hash the PASSWORD request.
+      1)With the result of the hashed password, it will create a db.query with params of USERNAME and the hashedPassword
+      IF SUCCESSFUL: it will respond with a status(201) with an array of the new USERNAME
+      IF FAILS: it will pass error to errorMiddleware which will respond with to the client depending on err.
+  D) At the end of the fetch fucntion in AuthForm, it will change window.location.hash to 'sign-in', which will
+    cause AuthForm to rerender with the SIGN-IN text and behavior.
+
+2) USER CAN SIGN IN
+  A) Like USER SIGN UP: Users will click on SIGN-In, SIGN-IN has a eventHandler that listens to clicks and will change
+    this.state.route = #sign-in
+       1) This will change the text of the form being filled and how the form will behave with the values that the users submit.
+  B) React Element App will then rerender with the <Auth> react element that will contain the form for the user to input the
+    username and password.
+          1)WHEN SUBMITTED it will then take the values of USERNAME and PASSWORD and run FETCH(`/api/auth/${action}) with
+            USERNAME and PASSWORD being part of the req.body
+                a) ${action} = 'sign-in' was determined by the user pressing SIGN-IN Button in the Navbar.
+  C)THER SERVER will then check if USERNAME and PASSWORD are truthy in req.body
+      -IF FAILS: server will respond with res.status(401) with a message 'invalid login'
+     1)Server will then run a SELECT db.query that will find both the userId and hashedPassword from the users table
+      wheer "username" = $1 < Which will be filled in with username from the form
+          1)the query will then return a promise
+              IF SUCCESSFUL:
+                  -BUT NO USER:
+                    it will inform the client with status(401) with invalid login
+                  -WITH USER:
+                    it will return both UserId and hashedPassword.
+                     a) it will run an argon2.verify() method that will test the hashedPassword to see if isMatching
+                          IF MATCHING: it will generate a token with the userId and USERNAME attached and respond to the client
+                                        with  an object that contains both
+                          !MATCHING: It will respond to client with res.state(401, 'invalid login)
+  D) AuthForm will then receive a json object containing both user and token object.
+      1) it will then this.props.onSignIn(result) which will pass to AuthPage
+  E) AuthPage will then pass this to app.jsx
+  F)App.jsx will then destructure both user and token
+      1)Token will be saved into localStorage under 'react-context-jwt'
+      2)user will then change App's state of { user }
+
+3)User can stay signed in(even if they refresh the page)
+  A) Right after App Render(by using componentDidMount) it will check if there was a token that was saved to local data by using window.localStorage.getItem('react-context-jtw')
+      IF TOKEN EXIST: it will pass the token to decodeToken(token) function
+        1) the token will then be split(.) and the return will then be passed into atob() funciton. the return of atob function will then be JSON.parsed
+            and the return of the parse will be assigned to const var payload.
+        2) payload will then be returned from decodeToken function.
+
+  B)the return of decodeToken will then be assigned to Apps this.state.user
+
+4) USER CAN SIGN out
+  A) If a USER exist, Navbar will render a sign-out button
+      1) WHEN CLICKED: it will remove the token saved in local storage and apps state.user = null.
+      2) This will then cause a rerender of app with all components rendering with user: null
